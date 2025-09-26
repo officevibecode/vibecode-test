@@ -9,7 +9,8 @@ $username = 'admin_vibecode';
 $password = 'admin_vibecode';
 $database = 'admin_vibecode';
 
-echo "<h2>Testando Conexão com MySQL Remoto</h2>\n";
+echo "<div class='container'>\n";
+echo "<h2>🔗 Testando Conexão com MySQL Remoto</h2>\n";
 echo "<p><strong>Host:</strong> $host</p>\n";
 echo "<p><strong>Database:</strong> $database</p>\n";
 echo "<p><strong>Username:</strong> $username</p>\n";
@@ -126,36 +127,184 @@ try {
     echo "<li>Se o utilizador tem permissões adequadas</li>\n";
     echo "</ul>\n";
 }
+
+echo "</div>\n";
 ?>
 
 <style>
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
 body {
-    font-family: Arial, sans-serif;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    min-height: 100vh;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    background-attachment: fixed;
+    padding: 20px;
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="rgba(255,255,255,0.1)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient></defs><circle cx="20" cy="20" r="2" fill="url(%23a)"/><circle cx="80" cy="40" r="1.5" fill="url(%23a)"/><circle cx="40" cy="80" r="1" fill="url(%23a)"/><circle cx="90" cy="90" r="2.5" fill="url(%23a)"/><circle cx="10" cy="60" r="1.2" fill="url(%23a)"/></svg>') repeat;
+    opacity: 0.3;
+    pointer-events: none;
+    z-index: -1;
+}
+
+.container {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 20px;
-    background-color: #f5f5f5;
+    background: rgba(255, 255, 255, 0.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-radius: 20px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    padding: 40px;
+    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
+    position: relative;
+    overflow: hidden;
+}
+
+.container::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+}
+
+h2, h3, h4 {
+    color: rgba(255, 255, 255, 0.95);
+    margin-bottom: 20px;
+    font-weight: 300;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+h2 {
+    font-size: 2.2rem;
+    text-align: center;
+    margin-bottom: 30px;
 }
 
 table {
-    background-color: white;
-    padding: 10px;
+    width: 100%;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    margin: 20px 0;
+    overflow: hidden;
+    border-collapse: collapse;
 }
 
 th {
-    background-color: #007bff;
-    color: white;
-    padding: 8px;
+    background: rgba(0, 123, 255, 0.2);
+    color: rgba(255, 255, 255, 0.9);
+    padding: 16px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 12px;
+    letter-spacing: 1px;
 }
 
 td {
-    padding: 8px;
+    padding: 16px;
+    color: rgba(255, 255, 255, 0.8);
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+tr:hover {
+    background: rgba(255, 255, 255, 0.05);
 }
 
 p {
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-    margin: 5px 0;
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin: 10px 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    color: rgba(255, 255, 255, 0.9);
+    line-height: 1.5;
+}
+
+strong {
+    color: rgba(255, 255, 255, 0.95);
+    font-weight: 600;
+}
+
+ul {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    padding: 20px;
+    border-radius: 12px;
+    margin: 15px 0;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+}
+
+li {
+    color: rgba(255, 255, 255, 0.8);
+    margin: 8px 0;
+    padding-left: 10px;
+}
+
+hr {
+    border: none;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+    margin: 30px 0;
+}
+
+a {
+    color: rgba(255, 255, 255, 0.9);
+    text-decoration: none;
+    padding: 12px 24px;
+    background: rgba(0, 123, 255, 0.2);
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    display: inline-block;
+    margin: 10px 0;
+    transition: all 0.3s ease;
+}
+
+a:hover {
+    background: rgba(0, 123, 255, 0.3);
+    transform: translateY(-2px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+}
+
+@media (max-width: 768px) {
+    .container {
+        padding: 25px;
+        margin: 10px;
+    }
+    
+    h2 {
+        font-size: 1.8rem;
+    }
+    
+    table {
+        font-size: 14px;
+    }
+    
+    th, td {
+        padding: 12px 8px;
+    }
 }
 </style>
