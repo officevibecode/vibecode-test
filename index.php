@@ -86,14 +86,14 @@ try {
         }
         
         .btn {
-            padding: 12px 24px;
+            padding: 10px 20px;
             text-decoration: none;
-            border-radius: 12px;
+            border-radius: 8px;
             display: inline-block;
-            margin: 8px;
+            margin: 0;
             border: none;
             cursor: pointer;
-            font-size: 14px;
+            font-size: 13px;
             font-weight: 500;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(10px);
@@ -101,6 +101,9 @@ try {
             border: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
             overflow: hidden;
+            min-width: 100px;
+            text-align: center;
+            white-space: nowrap;
         }
         
         .btn::before {
@@ -183,6 +186,10 @@ try {
         
         .actions {
             white-space: nowrap;
+            display: flex;
+            gap: 8px;
+            justify-content: center;
+            align-items: center;
         }
         
         .alert {
@@ -217,6 +224,12 @@ try {
         .add-button-container {
             margin-bottom: 30px;
             text-align: center;
+        }
+        
+        .add-button-container .btn {
+            padding: 14px 28px;
+            font-size: 15px;
+            min-width: 200px;
         }
         
         .stats {

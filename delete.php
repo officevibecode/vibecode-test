@@ -119,14 +119,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmar']) && $clien
         }
         
         .btn {
-            padding: 16px 32px;
+            padding: 14px 28px;
             text-decoration: none;
-            border-radius: 12px;
+            border-radius: 10px;
             display: inline-block;
-            margin: 8px;
+            margin: 0;
             border: none;
             cursor: pointer;
-            font-size: 16px;
+            font-size: 15px;
             font-weight: 500;
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
             backdrop-filter: blur(10px);
@@ -134,6 +134,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmar']) && $clien
             border: 1px solid rgba(255, 255, 255, 0.2);
             position: relative;
             overflow: hidden;
+            min-width: 140px;
+            text-align: center;
         }
         
         .btn::before {
@@ -196,8 +198,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['confirmar']) && $clien
         }
         
         .form-actions {
-            text-align: center;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            gap: 15px;
             margin-top: 40px;
+            flex-wrap: wrap;
         }
         
         .back-link {

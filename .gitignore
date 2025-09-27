@@ -28,3 +28,5 @@ logs/
 # Dependências
 /vendor/
 /node_modules/
+
+sync_config.jsonc
