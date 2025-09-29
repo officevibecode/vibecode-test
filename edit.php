@@ -83,207 +83,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $cliente) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Editar Cliente - Sistema de Gestão</title>
+    <link rel="stylesheet" href="dark-theme.css">
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-        
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            min-height: 100vh;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-            background-attachment: fixed;
-            padding: 20px;
-            position: relative;
-        }
-        
-        body::before {
-            content: '';
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="rgba(255,255,255,0.1)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient></defs><circle cx="20" cy="20" r="2" fill="url(%23a)"/><circle cx="80" cy="40" r="1.5" fill="url(%23a)"/><circle cx="40" cy="80" r="1" fill="url(%23a)"/><circle cx="90" cy="90" r="2.5" fill="url(%23a)"/><circle cx="10" cy="60" r="1.2" fill="url(%23a)"/></svg>') repeat;
-            opacity: 0.3;
-            pointer-events: none;
-            z-index: -1;
-        }
-        
+        /* Estilos específicos da página edit */
         .container {
             max-width: 600px;
-            margin: 0 auto;
-            background: rgba(255, 255, 255, 0.15);
-            backdrop-filter: blur(20px);
-            -webkit-backdrop-filter: blur(20px);
-            border-radius: 20px;
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            padding: 40px;
-            box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .container::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
         }
         
         h1 {
-            color: rgba(255, 255, 255, 0.95);
-            text-align: center;
-            margin-bottom: 40px;
-            font-size: 2.2rem;
-            font-weight: 300;
-            text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-            letter-spacing: -0.5px;
-        }
-        
-        .form-group {
-            margin-bottom: 25px;
-        }
-        
-        label {
-            display: block;
-            margin-bottom: 8px;
-            font-weight: 500;
-            color: rgba(255, 255, 255, 0.9);
-            font-size: 14px;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
-        }
-        
-        input[type="text"],
-        input[type="email"],
-        input[type="tel"] {
-            width: 100%;
-            padding: 16px 20px;
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            border-radius: 12px;
-            font-size: 16px;
-            color: rgba(255, 255, 255, 0.9);
-            transition: all 0.3s ease;
-        }
-        
-        input[type="text"]:focus,
-        input[type="email"]:focus,
-        input[type="tel"]:focus {
-            outline: none;
-            border-color: rgba(255, 255, 255, 0.4);
-            background: rgba(255, 255, 255, 0.15);
-            box-shadow: 0 0 20px rgba(255, 255, 255, 0.1);
-            transform: translateY(-2px);
-        }
-        
-        input::placeholder {
-            color: rgba(255, 255, 255, 0.5);
-        }
-        
-        .btn {
-            padding: 14px 28px;
-            text-decoration: none;
-            border-radius: 10px;
-            display: inline-block;
-            margin: 0;
-            border: none;
-            cursor: pointer;
-            font-size: 15px;
-            font-weight: 500;
-            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            position: relative;
-            overflow: hidden;
-            min-width: 140px;
-            text-align: center;
-        }
-        
-        .btn::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: -100%;
-            width: 100%;
-            height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-            transition: left 0.5s;
-        }
-        
-        .btn:hover::before {
-            left: 100%;
-        }
-        
-        .btn-primary {
-            background: rgba(0, 123, 255, 0.2);
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .btn-secondary {
-            background: rgba(108, 117, 125, 0.2);
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .btn:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
-        }
-        
-        .alert {
-            padding: 20px;
-            margin-bottom: 25px;
-            border-radius: 12px;
-            backdrop-filter: blur(10px);
-            -webkit-backdrop-filter: blur(10px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .alert-danger {
-            background: rgba(220, 53, 69, 0.15);
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .alert-success {
-            background: rgba(40, 167, 69, 0.15);
-            color: rgba(255, 255, 255, 0.9);
-        }
-        
-        .form-actions {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            gap: 15px;
-            margin-top: 40px;
-            flex-wrap: wrap;
-        }
-        
-        .back-link {
-            display: block;
-            text-align: center;
-            margin-top: 30px;
-            color: rgba(255, 255, 255, 0.7);
-            text-decoration: none;
-            font-size: 14px;
-            transition: all 0.3s ease;
-        }
-        
-        .back-link:hover {
-            color: rgba(255, 255, 255, 0.9);
-            text-shadow: 0 0 10px rgba(255, 255, 255, 0.3);
+            font-size: 2.4rem;
         }
         
         .client-info {
-            background: rgba(255, 255, 255, 0.1);
+            background: rgba(20, 20, 20, 0.6);
             backdrop-filter: blur(10px);
             -webkit-backdrop-filter: blur(10px);
             padding: 20px;
@@ -301,23 +113,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $cliente) {
         .client-info p {
             color: rgba(255, 255, 255, 0.7);
             margin: 0;
-        }
-        
-        @media (max-width: 768px) {
-            .container {
-                padding: 25px;
-                margin: 10px;
-            }
-            
-            h1 {
-                font-size: 1.8rem;
-            }
-            
-            input[type="text"],
-            input[type="email"],
-            input[type="tel"] {
-                padding: 14px 16px;
-            }
         }
     </style>
 </head>
@@ -339,13 +134,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $cliente) {
         <?php endif; ?>
         
         <?php if ($cliente): ?>
-            <!-- Informações do cliente -->
-            <div class="client-info">
-                <h3>Cliente ID: <?php echo htmlspecialchars($cliente['id']); ?></h3>
-                <p>Editando os dados do cliente selecionado</p>
-            </div>
-            
-            <!-- Formulário para editar cliente -->
             <form method="POST" action="">
                 <div class="form-group">
                     <label for="nome">Nome Completo *</label>
@@ -376,6 +164,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $cliente) {
                            name="telefone" 
                            value="<?php echo htmlspecialchars($cliente['telefone']); ?>" 
                            required 
+                           maxlength="20"
+                           placeholder="Digite o telefone do cliente">
                 </div>
                 
                 <div class="form-actions">
@@ -386,6 +176,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST' && $cliente) {
         <?php else: ?>
             <div class="alert alert-danger">
                 Cliente não encontrado ou erro ao carregar dados.
+            </div>
             <div class="form-actions">
                 <a href="index.php" class="btn btn-secondary">Voltar à Lista</a>
             </div>

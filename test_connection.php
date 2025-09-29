@@ -130,181 +130,76 @@ try {
 
 echo "</div>\n";
 ?>
+<!DOCTYPE html>
+<html lang="pt">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teste de Conexão MySQL</title>
+    <link rel="stylesheet" href="dark-theme.css">
+    <style>
+        /* Estilos específicos do teste de conexão */
+        p {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 15px 20px;
+            border-radius: 12px;
+            margin: 10px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: rgba(255, 255, 255, 0.9);
+            line-height: 1.5;
+        }
 
-<style>
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
+        strong {
+            color: rgba(255, 255, 255, 0.95);
+            font-weight: 600;
+        }
 
-body {
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    min-height: 100vh;
-    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
-    background-attachment: fixed;
-    padding: 20px;
-    position: relative;
-}
+        ul {
+            background: rgba(20, 20, 20, 0.6);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            padding: 20px;
+            border-radius: 12px;
+            margin: 15px 0;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
 
-body::before {
-    content: '';
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><radialGradient id="a" cx="50%" cy="50%" r="50%"><stop offset="0%" stop-color="rgba(255,255,255,0.1)"/><stop offset="100%" stop-color="rgba(255,255,255,0)"/></radialGradient></defs><circle cx="20" cy="20" r="2" fill="url(%23a)"/><circle cx="80" cy="40" r="1.5" fill="url(%23a)"/><circle cx="40" cy="80" r="1" fill="url(%23a)"/><circle cx="90" cy="90" r="2.5" fill="url(%23a)"/><circle cx="10" cy="60" r="1.2" fill="url(%23a)"/></svg>') repeat;
-    opacity: 0.3;
-    pointer-events: none;
-    z-index: -1;
-}
+        li {
+            color: rgba(255, 255, 255, 0.8);
+            margin: 8px 0;
+            padding-left: 10px;
+        }
 
-.container {
-    max-width: 1000px;
-    margin: 0 auto;
-    background: rgba(255, 255, 255, 0.15);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
-    border-radius: 20px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    padding: 40px;
-    box-shadow: 0 25px 45px rgba(0, 0, 0, 0.1);
-    position: relative;
-    overflow: hidden;
-}
+        hr {
+            border: none;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
+            margin: 30px 0;
+        }
 
-.container::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-}
+        a {
+            color: rgba(255, 255, 255, 0.9);
+            text-decoration: none;
+            padding: 12px 24px;
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 8px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            display: inline-block;
+            margin: 10px 0;
+            transition: all 0.3s ease;
+        }
 
-h2, h3, h4 {
-    color: rgba(255, 255, 255, 0.95);
-    margin-bottom: 20px;
-    font-weight: 300;
-    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-h2 {
-    font-size: 2.2rem;
-    text-align: center;
-    margin-bottom: 30px;
-}
-
-table {
-    width: 100%;
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 12px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    margin: 20px 0;
-    overflow: hidden;
-    border-collapse: collapse;
-}
-
-th {
-    background: rgba(0, 123, 255, 0.2);
-    color: rgba(255, 255, 255, 0.9);
-    padding: 16px;
-    font-weight: 600;
-    text-transform: uppercase;
-    font-size: 12px;
-    letter-spacing: 1px;
-}
-
-td {
-    padding: 16px;
-    color: rgba(255, 255, 255, 0.8);
-    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-}
-
-tr:hover {
-    background: rgba(255, 255, 255, 0.05);
-}
-
-p {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 15px 20px;
-    border-radius: 12px;
-    margin: 10px 0;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    color: rgba(255, 255, 255, 0.9);
-    line-height: 1.5;
-}
-
-strong {
-    color: rgba(255, 255, 255, 0.95);
-    font-weight: 600;
-}
-
-ul {
-    background: rgba(255, 255, 255, 0.1);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    padding: 20px;
-    border-radius: 12px;
-    margin: 15px 0;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-}
-
-li {
-    color: rgba(255, 255, 255, 0.8);
-    margin: 8px 0;
-    padding-left: 10px;
-}
-
-hr {
-    border: none;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
-    margin: 30px 0;
-}
-
-a {
-    color: rgba(255, 255, 255, 0.9);
-    text-decoration: none;
-    padding: 12px 24px;
-    background: rgba(0, 123, 255, 0.2);
-    backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
-    border-radius: 8px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
-    display: inline-block;
-    margin: 10px 0;
-    transition: all 0.3s ease;
-}
-
-a:hover {
-    background: rgba(0, 123, 255, 0.3);
-    transform: translateY(-2px);
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
-}
-
-@media (max-width: 768px) {
-    .container {
-        padding: 25px;
-        margin: 10px;
-    }
-    
-    h2 {
-        font-size: 1.8rem;
-    }
-    
-    table {
-        font-size: 14px;
-    }
-    
-    th, td {
-        padding: 12px 8px;
-    }
-}
-</style>
+        a:hover {
+            background: linear-gradient(135deg, #1e40af 0%, #3b82f6 100%);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(59, 130, 246, 0.3);
+        }
+    </style>
+</head>
+<body>
+</body>
+</html>
